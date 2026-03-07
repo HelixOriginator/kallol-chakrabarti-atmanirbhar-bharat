@@ -21,801 +21,164 @@
     --green: #00C853;
     --purple: #7C4DFF;
   }
-
   * { margin: 0; padding: 0; box-sizing: border-box; }
-
   html { scroll-behavior: smooth; }
-
-  body {
-    background: var(--navy);
-    color: var(--white);
-    font-family: 'DM Sans', sans-serif;
-    overflow-x: hidden;
-  }
-
-  /* ── TRICOLOUR TOP BAR ── */
-  .tricolour {
-    display: flex;
-    width: 100%;
-    height: 6px;
-    position: fixed;
-    top: 0;
-    z-index: 1000;
-  }
+  body { background: var(--navy); color: var(--white); font-family: 'DM Sans', sans-serif; overflow-x: hidden; }
+  .tricolour { display: flex; width: 100%; height: 6px; position: fixed; top: 0; z-index: 1000; }
   .tricolour span:nth-child(1) { background: #FF9933; flex: 1; }
   .tricolour span:nth-child(2) { background: #FFFFFF; flex: 1; }
   .tricolour span:nth-child(3) { background: #138808; flex: 1; }
-
-  /* ── NAV ── */
-  nav {
-    position: fixed;
-    top: 6px;
-    width: 100%;
-    z-index: 999;
-    background: rgba(10,22,40,0.92);
-    backdrop-filter: blur(12px);
-    border-bottom: 1px solid rgba(245,200,66,0.15);
-    padding: 0.75rem 2rem;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-  .nav-brand {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.05rem;
-    color: var(--gold);
-    letter-spacing: 0.5px;
-  }
-  .nav-links {
-    display: flex;
-    gap: 2rem;
-    list-style: none;
-  }
-  .nav-links a {
-    color: var(--light-gray);
-    text-decoration: none;
-    font-size: 0.8rem;
-    font-weight: 500;
-    letter-spacing: 1.5px;
-    text-transform: uppercase;
-    transition: color 0.3s;
-  }
+  nav { position: fixed; top: 6px; width: 100%; z-index: 999; background: rgba(10,22,40,0.92); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(245,200,66,0.15); padding: 0.75rem 2rem; display: flex; justify-content: space-between; align-items: center; }
+  .nav-brand { font-family: 'Playfair Display', serif; font-size: 1.05rem; color: var(--gold); letter-spacing: 0.5px; }
+  .nav-links { display: flex; gap: 2rem; list-style: none; }
+  .nav-links a { color: var(--light-gray); text-decoration: none; font-size: 0.8rem; font-weight: 500; letter-spacing: 1.5px; text-transform: uppercase; transition: color 0.3s; }
   .nav-links a:hover { color: var(--gold); }
-
-  /* ── HERO ── */
-  .hero {
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    padding: 8rem 2rem 4rem;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .hero::before {
-    content: '';
-    position: absolute;
-    width: 700px;
-    height: 700px;
-    border-radius: 50%;
-    background: radial-gradient(circle, rgba(255,107,26,0.08) 0%, transparent 70%);
-    top: -100px;
-    right: -150px;
-    pointer-events: none;
-  }
-  .hero::after {
-    content: '';
-    position: absolute;
-    width: 500px;
-    height: 500px;
-    border-radius: 50%;
-    background: radial-gradient(circle, rgba(0,191,165,0.07) 0%, transparent 70%);
-    bottom: -100px;
-    left: -100px;
-    pointer-events: none;
-  }
-
-  .flag-strip {
-    display: flex;
-    width: min(600px, 90vw);
-    height: 4px;
-    border-radius: 2px;
-    overflow: hidden;
-    margin-bottom: 2.5rem;
-    animation: fadeIn 0.8s ease forwards;
-  }
+  .hero { min-height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 8rem 2rem 4rem; position: relative; overflow: hidden; }
+  .hero::before { content: ''; position: absolute; width: 700px; height: 700px; border-radius: 50%; background: radial-gradient(circle, rgba(255,107,26,0.08) 0%, transparent 70%); top: -100px; right: -150px; pointer-events: none; }
+  .hero::after { content: ''; position: absolute; width: 500px; height: 500px; border-radius: 50%; background: radial-gradient(circle, rgba(0,191,165,0.07) 0%, transparent 70%); bottom: -100px; left: -100px; pointer-events: none; }
+  .flag-strip { display: flex; width: min(600px, 90vw); height: 4px; border-radius: 2px; overflow: hidden; margin-bottom: 2.5rem; animation: fadeIn 0.8s ease forwards; }
   .flag-strip span:nth-child(1) { background: #FF9933; flex: 1; }
   .flag-strip span:nth-child(2) { background: #FFFFFF; flex: 1; }
   .flag-strip span:nth-child(3) { background: #138808; flex: 1; }
-
-  .hero-eyebrow {
-    font-family: 'Space Mono', monospace;
-    font-size: 0.72rem;
-    letter-spacing: 4px;
-    text-transform: uppercase;
-    color: var(--saffron);
-    margin-bottom: 1.2rem;
-    opacity: 0;
-    animation: slideUp 0.7s ease 0.2s forwards;
-  }
-
-  .hero-name {
-    font-family: 'Playfair Display', serif;
-    font-size: clamp(3rem, 7vw, 6rem);
-    font-weight: 900;
-    line-height: 1.05;
-    color: var(--white);
-    margin-bottom: 0.5rem;
-    opacity: 0;
-    animation: slideUp 0.8s ease 0.4s forwards;
-  }
-
-  .hero-title {
-    font-family: 'Playfair Display', serif;
-    font-size: clamp(1rem, 2.5vw, 1.5rem);
-    font-weight: 700;
-    font-style: italic;
-    color: var(--saffron-light);
-    margin-bottom: 1.5rem;
-    opacity: 0;
-    animation: slideUp 0.8s ease 0.6s forwards;
-  }
-
-  .hero-tagline {
-    font-size: 0.95rem;
-    color: var(--light-gray);
-    max-width: 600px;
-    line-height: 1.7;
-    margin-bottom: 3rem;
-    opacity: 0;
-    animation: slideUp 0.8s ease 0.8s forwards;
-  }
-
-  /* Stats grid */
-  .stats-grid {
-    display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    gap: 1rem;
-    width: min(900px, 90vw);
-    margin-bottom: 3rem;
-    opacity: 0;
-    animation: slideUp 0.8s ease 1s forwards;
-  }
-
-  .stat-card {
-    background: var(--navy-light);
-    border: 1px solid rgba(255,107,26,0.3);
-    border-radius: 8px;
-    padding: 1.2rem 0.8rem;
-    text-align: center;
-    transition: transform 0.3s, border-color 0.3s;
-    position: relative;
-    overflow: hidden;
-  }
-  .stat-card::before {
-    content: '';
-    position: absolute;
-    top: 0; left: 0; right: 0;
-    height: 2px;
-    background: var(--saffron);
-  }
-  .stat-card:hover {
-    transform: translateY(-4px);
-    border-color: var(--saffron);
-  }
-  .stat-number {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.8rem;
-    font-weight: 700;
-    color: var(--gold);
-    display: block;
-  }
-  .stat-label {
-    font-size: 0.7rem;
-    color: var(--light-gray);
-    letter-spacing: 0.5px;
-    margin-top: 0.3rem;
-    line-height: 1.4;
-  }
-
-  .hero-cta {
-    display: flex;
-    gap: 1rem;
-    flex-wrap: wrap;
-    justify-content: center;
-    opacity: 0;
-    animation: slideUp 0.8s ease 1.2s forwards;
-  }
-
-  .btn {
-    padding: 0.75rem 2rem;
-    border-radius: 4px;
-    font-family: 'Space Mono', monospace;
-    font-size: 0.75rem;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    text-decoration: none;
-    transition: all 0.3s;
-    cursor: pointer;
-    border: none;
-  }
-  .btn-primary {
-    background: var(--saffron);
-    color: var(--navy);
-    font-weight: 700;
-  }
+  .hero-eyebrow { font-family: 'Space Mono', monospace; font-size: 0.72rem; letter-spacing: 4px; text-transform: uppercase; color: var(--saffron); margin-bottom: 1.2rem; opacity: 0; animation: slideUp 0.7s ease 0.2s forwards; }
+  .hero-name { font-family: 'Playfair Display', serif; font-size: clamp(3rem, 7vw, 6rem); font-weight: 900; line-height: 1.05; color: var(--white); margin-bottom: 0.5rem; opacity: 0; animation: slideUp 0.8s ease 0.4s forwards; }
+  .hero-title { font-family: 'Playfair Display', serif; font-size: clamp(1rem, 2.5vw, 1.5rem); font-weight: 700; font-style: italic; color: var(--saffron-light); margin-bottom: 1.5rem; opacity: 0; animation: slideUp 0.8s ease 0.6s forwards; }
+  .hero-tagline { font-size: 0.95rem; color: var(--light-gray); max-width: 600px; line-height: 1.7; margin-bottom: 3rem; opacity: 0; animation: slideUp 0.8s ease 0.8s forwards; }
+  .stats-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 1rem; width: min(900px, 90vw); margin-bottom: 3rem; opacity: 0; animation: slideUp 0.8s ease 1s forwards; }
+  .stat-card { background: var(--navy-light); border: 1px solid rgba(255,107,26,0.3); border-radius: 8px; padding: 1.2rem 0.8rem; text-align: center; transition: transform 0.3s, border-color 0.3s; position: relative; overflow: hidden; }
+  .stat-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: var(--saffron); }
+  .stat-card:hover { transform: translateY(-4px); border-color: var(--saffron); }
+  .stat-number { font-family: 'Playfair Display', serif; font-size: 1.8rem; font-weight: 700; color: var(--gold); display: block; }
+  .stat-label { font-size: 0.7rem; color: var(--light-gray); letter-spacing: 0.5px; margin-top: 0.3rem; line-height: 1.4; }
+  .hero-cta { display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center; opacity: 0; animation: slideUp 0.8s ease 1.2s forwards; }
+  .btn { padding: 0.75rem 2rem; border-radius: 4px; font-family: 'Space Mono', monospace; font-size: 0.75rem; letter-spacing: 2px; text-transform: uppercase; text-decoration: none; transition: all 0.3s; cursor: pointer; border: none; }
+  .btn-primary { background: var(--saffron); color: var(--navy); font-weight: 700; }
   .btn-primary:hover { background: var(--saffron-light); transform: translateY(-2px); }
-  .btn-outline {
-    background: transparent;
-    color: var(--gold);
-    border: 1.5px solid var(--gold);
-  }
+  .btn-outline { background: transparent; color: var(--gold); border: 1.5px solid var(--gold); }
   .btn-outline:hover { background: rgba(245,200,66,0.1); transform: translateY(-2px); }
-
-  .btn-ppt {
-    background: linear-gradient(135deg, #C0392B 0%, #922B21 100%);
-    color: var(--white);
-    display: flex;
-    align-items: center;
-    gap: 0.55rem;
-    font-weight: 700;
-    position: relative;
-    overflow: hidden;
-    box-shadow: 0 4px 20px rgba(192,57,43,0.45);
-    padding: 0.75rem 1.6rem;
-  }
-  .btn-ppt::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(135deg, rgba(255,255,255,0.12) 0%, transparent 60%);
-  }
-  .btn-ppt:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 8px 28px rgba(192,57,43,0.6);
-  }
+  .btn-ppt { background: linear-gradient(135deg, #C0392B 0%, #922B21 100%); color: var(--white); display: flex; align-items: center; gap: 0.55rem; font-weight: 700; position: relative; overflow: hidden; box-shadow: 0 4px 20px rgba(192,57,43,0.45); padding: 0.75rem 1.6rem; }
+  .btn-ppt::before { content: ''; position: absolute; inset: 0; background: linear-gradient(135deg, rgba(255,255,255,0.12) 0%, transparent 60%); }
+  .btn-ppt:hover { transform: translateY(-3px); box-shadow: 0 8px 28px rgba(192,57,43,0.6); }
   .btn-ppt .ppt-icon { font-size: 1.3rem; flex-shrink: 0; }
   .btn-ppt .ppt-label { display: flex; flex-direction: column; text-align: left; }
   .btn-ppt .ppt-label .ppt-main { font-size: 0.72rem; letter-spacing: 2px; }
   .btn-ppt .ppt-label .ppt-sub { font-size: 0.6rem; opacity: 0.75; font-weight: 400; letter-spacing: 1px; margin-top: 2px; }
-
-  /* ── SECTIONS ── */
-  section {
-    padding: 6rem 2rem;
-    max-width: 1100px;
-    margin: 0 auto;
-  }
-
-  .section-label {
-    font-family: 'Space Mono', monospace;
-    font-size: 0.7rem;
-    letter-spacing: 4px;
-    text-transform: uppercase;
-    color: var(--saffron);
-    margin-bottom: 0.75rem;
-  }
-
-  .section-title {
-    font-family: 'Playfair Display', serif;
-    font-size: clamp(1.8rem, 4vw, 2.8rem);
-    font-weight: 700;
-    color: var(--white);
-    margin-bottom: 1rem;
-    line-height: 1.2;
-  }
-
-  .section-subtitle {
-    color: var(--light-gray);
-    font-size: 1rem;
-    line-height: 1.7;
-    max-width: 700px;
-    margin-bottom: 3rem;
-  }
-
-  .divider {
-    height: 1px;
-    background: linear-gradient(90deg, transparent, rgba(245,200,66,0.3), transparent);
-    margin: 0 2rem;
-  }
-
-  /* ── PILLARS ── */
-  .pillars-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 1.5rem;
-  }
-
-  .pillar-card {
-    background: var(--navy-mid);
-    border-radius: 10px;
-    padding: 2rem;
-    border: 1px solid rgba(255,255,255,0.06);
-    position: relative;
-    overflow: hidden;
-    transition: transform 0.3s, border-color 0.3s;
-  }
-  .pillar-card:hover {
-    transform: translateY(-4px);
-  }
-
-  .pillar-card::before {
-    content: '';
-    position: absolute;
-    top: 0; left: 0; right: 0;
-    height: 3px;
-  }
+  section { padding: 6rem 2rem; max-width: 1100px; margin: 0 auto; }
+  .section-label { font-family: 'Space Mono', monospace; font-size: 0.7rem; letter-spacing: 4px; text-transform: uppercase; color: var(--saffron); margin-bottom: 0.75rem; }
+  .section-title { font-family: 'Playfair Display', serif; font-size: clamp(1.8rem, 4vw, 2.8rem); font-weight: 700; color: var(--white); margin-bottom: 1rem; line-height: 1.2; }
+  .section-subtitle { color: var(--light-gray); font-size: 1rem; line-height: 1.7; max-width: 700px; margin-bottom: 3rem; }
+  .divider { height: 1px; background: linear-gradient(90deg, transparent, rgba(245,200,66,0.3), transparent); margin: 0 2rem; }
+  .pillars-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; }
+  .pillar-card { background: var(--navy-mid); border-radius: 10px; padding: 2rem; border: 1px solid rgba(255,255,255,0.06); position: relative; overflow: hidden; transition: transform 0.3s, border-color 0.3s; }
+  .pillar-card:hover { transform: translateY(-4px); }
+  .pillar-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; }
   .pillar-card.p1::before { background: var(--saffron); }
   .pillar-card.p2::before { background: var(--teal); }
   .pillar-card.p3::before { background: var(--gold); }
   .pillar-card.p4::before { background: var(--purple); }
-
   .pillar-card:hover.p1 { border-color: rgba(255,107,26,0.4); }
   .pillar-card:hover.p2 { border-color: rgba(0,191,165,0.4); }
   .pillar-card:hover.p3 { border-color: rgba(245,200,66,0.4); }
   .pillar-card:hover.p4 { border-color: rgba(124,77,255,0.4); }
-
-  .pillar-num {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 2.2rem;
-    height: 2.2rem;
-    border-radius: 50%;
-    font-family: 'Playfair Display', serif;
-    font-size: 0.9rem;
-    font-weight: 700;
-    color: var(--navy);
-    margin-bottom: 1rem;
-  }
+  .pillar-num { display: inline-flex; align-items: center; justify-content: center; width: 2.2rem; height: 2.2rem; border-radius: 50%; font-family: 'Playfair Display', serif; font-size: 0.9rem; font-weight: 700; color: var(--navy); margin-bottom: 1rem; }
   .p1 .pillar-num { background: var(--saffron); }
   .p2 .pillar-num { background: var(--teal); }
   .p3 .pillar-num { background: var(--gold); }
   .p4 .pillar-num { background: var(--purple); }
-
-  .pillar-name {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.2rem;
-    font-weight: 700;
-    color: var(--white);
-    margin-bottom: 0.4rem;
-  }
-  .pillar-sub {
-    font-size: 0.75rem;
-    font-style: italic;
-    margin-bottom: 1rem;
-  }
+  .pillar-name { font-family: 'Playfair Display', serif; font-size: 1.2rem; font-weight: 700; color: var(--white); margin-bottom: 0.4rem; }
+  .pillar-sub { font-size: 0.75rem; font-style: italic; margin-bottom: 1rem; }
   .p1 .pillar-sub { color: var(--saffron-light); }
   .p2 .pillar-sub { color: var(--teal); }
   .p3 .pillar-sub { color: var(--gold); }
   .p4 .pillar-sub { color: #B39DDB; }
-
-  .pillar-points {
-    list-style: none;
-    display: flex;
-    flex-direction: column;
-    gap: 0.4rem;
-  }
-  .pillar-points li {
-    font-size: 0.85rem;
-    color: var(--light-gray);
-    display: flex;
-    align-items: flex-start;
-    gap: 0.5rem;
-    line-height: 1.5;
-  }
-  .pillar-points li::before {
-    content: '›';
-    color: var(--saffron);
-    font-weight: 700;
-    flex-shrink: 0;
-    margin-top: 0.05rem;
-  }
-
-  /* ── NANO BANANA ── */
-  .nano-section {
-    background: linear-gradient(135deg, var(--saffron) 0%, #FF3D00 100%);
-    border-radius: 16px;
-    padding: 3.5rem;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 3rem;
-    align-items: center;
-    position: relative;
-    overflow: hidden;
-  }
-  .nano-section::before {
-    content: '';
-    position: absolute;
-    width: 400px;
-    height: 400px;
-    border-radius: 50%;
-    background: rgba(255,255,255,0.06);
-    top: -150px;
-    right: -100px;
-  }
-  .nano-left .big-title {
-    font-family: 'Playfair Display', serif;
-    font-size: 3.5rem;
-    font-weight: 900;
-    color: var(--navy);
-    line-height: 1;
-    margin-bottom: 1rem;
-  }
-  .nano-left p {
-    font-size: 0.95rem;
-    color: var(--navy-mid);
-    line-height: 1.6;
-    margin-bottom: 1.5rem;
-  }
-  .nano-badge {
-    display: inline-block;
-    background: var(--navy);
-    color: var(--gold);
-    padding: 0.5rem 1.2rem;
-    border-radius: 4px;
-    font-family: 'Space Mono', monospace;
-    font-size: 0.7rem;
-    letter-spacing: 1.5px;
-    font-weight: 700;
-  }
-  .nano-features {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-  }
-  .nano-feature {
-    background: rgba(10,22,40,0.3);
-    border-radius: 8px;
-    padding: 1rem 1.2rem;
-    border-left: 3px solid var(--navy);
-  }
-  .nano-feature-title {
-    font-weight: 700;
-    color: var(--navy);
-    font-size: 0.95rem;
-    margin-bottom: 0.2rem;
-  }
-  .nano-feature-desc {
-    font-size: 0.82rem;
-    color: rgba(10,22,40,0.75);
-    line-height: 1.5;
-  }
-
-  /* ── CREDENTIALS ── */
-  .creds-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1.2rem;
-  }
-  .cred-card {
-    background: var(--navy-mid);
-    border-radius: 10px;
-    padding: 1.5rem;
-    border: 1px solid rgba(255,255,255,0.06);
-    position: relative;
-    overflow: hidden;
-    transition: transform 0.3s;
-  }
+  .pillar-points { list-style: none; display: flex; flex-direction: column; gap: 0.4rem; }
+  .pillar-points li { font-size: 0.85rem; color: var(--light-gray); display: flex; align-items: flex-start; gap: 0.5rem; line-height: 1.5; }
+  .pillar-points li::before { content: '›'; color: var(--saffron); font-weight: 700; flex-shrink: 0; margin-top: 0.05rem; }
+  .nano-section { background: linear-gradient(135deg, var(--saffron) 0%, #FF3D00 100%); border-radius: 16px; padding: 3.5rem; display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: center; position: relative; overflow: hidden; }
+  .nano-section::before { content: ''; position: absolute; width: 400px; height: 400px; border-radius: 50%; background: rgba(255,255,255,0.06); top: -150px; right: -100px; }
+  .nano-left .big-title { font-family: 'Playfair Display', serif; font-size: 3.5rem; font-weight: 900; color: var(--navy); line-height: 1; margin-bottom: 1rem; }
+  .nano-left p { font-size: 0.95rem; color: var(--navy-mid); line-height: 1.6; margin-bottom: 1.5rem; }
+  .nano-badge { display: inline-block; background: var(--navy); color: var(--gold); padding: 0.5rem 1.2rem; border-radius: 4px; font-family: 'Space Mono', monospace; font-size: 0.7rem; letter-spacing: 1.5px; font-weight: 700; }
+  .nano-features { display: flex; flex-direction: column; gap: 1rem; }
+  .nano-feature { background: rgba(10,22,40,0.3); border-radius: 8px; padding: 1rem 1.2rem; border-left: 3px solid var(--navy); }
+  .nano-feature-title { font-weight: 700; color: var(--navy); font-size: 0.95rem; margin-bottom: 0.2rem; }
+  .nano-feature-desc { font-size: 0.82rem; color: rgba(10,22,40,0.75); line-height: 1.5; }
+  .creds-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.2rem; }
+  .cred-card { background: var(--navy-mid); border-radius: 10px; padding: 1.5rem; border: 1px solid rgba(255,255,255,0.06); position: relative; overflow: hidden; transition: transform 0.3s; }
   .cred-card:hover { transform: translateY(-3px); }
-  .cred-card::before {
-    content: '';
-    position: absolute;
-    top: 0; left: 0; right: 0;
-    height: 2px;
-  }
+  .cred-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; }
   .cred-card.c1::before { background: var(--saffron); }
   .cred-card.c2::before { background: var(--teal); }
   .cred-card.c3::before { background: var(--gold); }
   .cred-card.c4::before { background: var(--purple); }
   .cred-card.c5::before { background: var(--green); }
   .cred-card.c6::before { background: #FF4081; }
-
-  .cred-badge {
-    display: inline-block;
-    font-family: 'Space Mono', monospace;
-    font-size: 0.65rem;
-    font-weight: 700;
-    padding: 0.2rem 0.6rem;
-    border-radius: 3px;
-    margin-bottom: 0.8rem;
-    letter-spacing: 0.5px;
-  }
+  .cred-badge { display: inline-block; font-family: 'Space Mono', monospace; font-size: 0.65rem; font-weight: 700; padding: 0.2rem 0.6rem; border-radius: 3px; margin-bottom: 0.8rem; letter-spacing: 0.5px; }
   .c1 .cred-badge { background: rgba(255,107,26,0.2); color: var(--saffron); }
   .c2 .cred-badge { background: rgba(0,191,165,0.2); color: var(--teal); }
   .c3 .cred-badge { background: rgba(245,200,66,0.2); color: var(--gold); }
   .c4 .cred-badge { background: rgba(124,77,255,0.2); color: var(--purple); }
   .c5 .cred-badge { background: rgba(0,200,83,0.2); color: var(--green); }
   .c6 .cred-badge { background: rgba(255,64,129,0.2); color: #FF4081; }
-
-  .cred-title {
-    font-family: 'Playfair Display', serif;
-    font-size: 1rem;
-    font-weight: 700;
-    color: var(--white);
-    margin-bottom: 0.6rem;
-    line-height: 1.3;
-  }
-  .cred-desc {
-    font-size: 0.82rem;
-    color: var(--light-gray);
-    line-height: 1.6;
-  }
-
-  /* ── PLATFORMS ── */
-  .platforms-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1rem;
-  }
-  .platform-card {
-    background: var(--navy-mid);
-    border-radius: 8px;
-    padding: 1.3rem 1.5rem;
-    border: 1px solid rgba(255,255,255,0.06);
-    text-decoration: none;
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-    transition: all 0.3s;
-    position: relative;
-    overflow: hidden;
-  }
-  .platform-card::after {
-    content: '→';
-    position: absolute;
-    right: 1rem;
-    color: var(--saffron);
-    font-size: 1rem;
-    opacity: 0;
-    transform: translateX(-5px);
-    transition: all 0.3s;
-  }
+  .cred-title { font-family: 'Playfair Display', serif; font-size: 1rem; font-weight: 700; color: var(--white); margin-bottom: 0.6rem; line-height: 1.3; }
+  .cred-desc { font-size: 0.82rem; color: var(--light-gray); line-height: 1.6; }
+  .platforms-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
+  .platform-card { background: var(--navy-mid); border-radius: 8px; padding: 1.3rem 1.5rem; border: 1px solid rgba(255,255,255,0.06); text-decoration: none; display: flex; align-items: center; gap: 1rem; transition: all 0.3s; position: relative; overflow: hidden; }
+  .platform-card::after { content: '→'; position: absolute; right: 1rem; color: var(--saffron); font-size: 1rem; opacity: 0; transform: translateX(-5px); transition: all 0.3s; }
   .platform-card:hover::after { opacity: 1; transform: translateX(0); }
-  .platform-card:hover {
-    border-color: rgba(255,107,26,0.3);
-    transform: translateY(-3px);
-  }
-
-  .live-dot {
-    width: 8px;
-    height: 8px;
-    border-radius: 50%;
-    background: var(--green);
-    flex-shrink: 0;
-    box-shadow: 0 0 8px var(--green);
-    animation: pulse 2s infinite;
-  }
-  @keyframes pulse {
-    0%, 100% { box-shadow: 0 0 4px var(--green); }
-    50% { box-shadow: 0 0 12px var(--green); }
-  }
-
+  .platform-card:hover { border-color: rgba(255,107,26,0.3); transform: translateY(-3px); }
+  .live-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--green); flex-shrink: 0; box-shadow: 0 0 8px var(--green); animation: pulse 2s infinite; }
+  @keyframes pulse { 0%, 100% { box-shadow: 0 0 4px var(--green); } 50% { box-shadow: 0 0 12px var(--green); } }
   .platform-info { flex: 1; min-width: 0; }
-  .platform-name {
-    font-weight: 600;
-    font-size: 0.9rem;
-    color: var(--white);
-    margin-bottom: 0.2rem;
-  }
-  .platform-url {
-    font-family: 'Space Mono', monospace;
-    font-size: 0.65rem;
-    color: var(--teal);
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-  }
-
-  /* ── FEATURED LINKS BANNER ── */
-  .featured-links {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 1.2rem;
-    max-width: 1100px;
-    margin: 0 auto;
-    padding: 0 2rem 5rem;
-  }
-  .featured-btn {
-    display: flex;
-    align-items: center;
-    gap: 1.2rem;
-    padding: 1.4rem 1.8rem;
-    border-radius: 12px;
-    text-decoration: none;
-    position: relative;
-    overflow: hidden;
-    transition: transform 0.3s, box-shadow 0.3s;
-    border: 1px solid transparent;
-  }
-  .featured-btn::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(135deg, rgba(255,255,255,0.07) 0%, transparent 60%);
-    pointer-events: none;
-  }
-  .featured-btn::after {
-    content: '↗';
-    position: absolute;
-    top: 1rem;
-    right: 1.2rem;
-    font-size: 1rem;
-    opacity: 0.5;
-    transition: opacity 0.3s, transform 0.3s;
-  }
+  .platform-name { font-weight: 600; font-size: 0.9rem; color: var(--white); margin-bottom: 0.2rem; }
+  .platform-url { font-family: 'Space Mono', monospace; font-size: 0.65rem; color: var(--teal); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .featured-links { display: grid; grid-template-columns: 1fr 1fr; gap: 1.2rem; max-width: 1100px; margin: 0 auto; padding: 0 2rem 5rem; }
+  .featured-btn { display: flex; align-items: center; gap: 1.2rem; padding: 1.4rem 1.8rem; border-radius: 12px; text-decoration: none; position: relative; overflow: hidden; transition: transform 0.3s, box-shadow 0.3s; border: 1px solid transparent; }
+  .featured-btn::before { content: ''; position: absolute; inset: 0; background: linear-gradient(135deg, rgba(255,255,255,0.07) 0%, transparent 60%); pointer-events: none; }
+  .featured-btn::after { content: '↗'; position: absolute; top: 1rem; right: 1.2rem; font-size: 1rem; opacity: 0.5; transition: opacity 0.3s, transform 0.3s; }
   .featured-btn:hover::after { opacity: 1; transform: translate(2px, -2px); }
   .featured-btn:hover { transform: translateY(-4px); }
-
-  .featured-btn.fb-welfare {
-    background: linear-gradient(135deg, #0D3349 0%, #0A2538 100%);
-    border-color: rgba(0,191,165,0.35);
-    box-shadow: 0 4px 24px rgba(0,191,165,0.12);
-  }
+  .featured-btn.fb-welfare { background: linear-gradient(135deg, #0D3349 0%, #0A2538 100%); border-color: rgba(0,191,165,0.35); box-shadow: 0 4px 24px rgba(0,191,165,0.12); }
   .featured-btn.fb-welfare:hover { box-shadow: 0 10px 36px rgba(0,191,165,0.28); border-color: rgba(0,191,165,0.6); }
-
-  .featured-btn.fb-viksit {
-    background: linear-gradient(135deg, #2D1A00 0%, #1A1000 100%);
-    border-color: rgba(245,200,66,0.35);
-    box-shadow: 0 4px 24px rgba(245,200,66,0.12);
-  }
+  .featured-btn.fb-viksit { background: linear-gradient(135deg, #2D1A00 0%, #1A1000 100%); border-color: rgba(245,200,66,0.35); box-shadow: 0 4px 24px rgba(245,200,66,0.12); }
   .featured-btn.fb-viksit:hover { box-shadow: 0 10px 36px rgba(245,200,66,0.28); border-color: rgba(245,200,66,0.6); }
-
-  .fb-icon-wrap {
-    width: 3rem;
-    height: 3rem;
-    border-radius: 10px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.4rem;
-    flex-shrink: 0;
-  }
+  .fb-icon-wrap { width: 3rem; height: 3rem; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 1.4rem; flex-shrink: 0; }
   .fb-welfare .fb-icon-wrap { background: rgba(0,191,165,0.15); }
-  .fb-viksit  .fb-icon-wrap { background: rgba(245,200,66,0.15); }
-
+  .fb-viksit .fb-icon-wrap { background: rgba(245,200,66,0.15); }
   .fb-text { flex: 1; min-width: 0; }
-  .fb-label {
-    font-family: 'Space Mono', monospace;
-    font-size: 0.62rem;
-    letter-spacing: 2.5px;
-    text-transform: uppercase;
-    margin-bottom: 0.3rem;
-  }
+  .fb-label { font-family: 'Space Mono', monospace; font-size: 0.62rem; letter-spacing: 2.5px; text-transform: uppercase; margin-bottom: 0.3rem; }
   .fb-welfare .fb-label { color: var(--teal); }
-  .fb-viksit  .fb-label { color: var(--gold); }
-
-  .fb-title {
-    font-family: 'Playfair Display', serif;
-    font-size: 1rem;
-    font-weight: 700;
-    color: var(--white);
-    line-height: 1.3;
-    margin-bottom: 0.3rem;
-  }
-  .fb-desc {
-    font-size: 0.75rem;
-    color: var(--light-gray);
-    line-height: 1.5;
-  }
-  .fb-url {
-    font-family: 'Space Mono', monospace;
-    font-size: 0.6rem;
-    margin-top: 0.5rem;
-    opacity: 0.55;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-  }
+  .fb-viksit .fb-label { color: var(--gold); }
+  .fb-title { font-family: 'Playfair Display', serif; font-size: 1rem; font-weight: 700; color: var(--white); line-height: 1.3; margin-bottom: 0.3rem; }
+  .fb-desc { font-size: 0.75rem; color: var(--light-gray); line-height: 1.5; }
+  .fb-url { font-family: 'Space Mono', monospace; font-size: 0.6rem; margin-top: 0.5rem; opacity: 0.55; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
   .fb-welfare .fb-url { color: var(--teal); }
-  .fb-viksit  .fb-url { color: var(--gold); }
-
-  @media (max-width: 768px) { .featured-links { grid-template-columns: 1fr; } }
-
-  /* ── QUOTE ── */
-  .quote-section {
-    text-align: center;
-    padding: 5rem 2rem;
-    position: relative;
-  }
-  .quote-text {
-    font-family: 'Playfair Display', serif;
-    font-size: clamp(1.3rem, 3vw, 2rem);
-    font-style: italic;
-    color: var(--gold-light);
-    max-width: 800px;
-    margin: 0 auto 1.5rem;
-    line-height: 1.6;
-  }
-  .quote-attribution {
-    font-family: 'Space Mono', monospace;
-    font-size: 0.72rem;
-    letter-spacing: 2px;
-    color: var(--saffron);
-    text-transform: uppercase;
-  }
-
-  /* ── FOOTER ── */
-  footer {
-    background: #060E1C;
-    padding: 3rem 2rem;
-    text-align: center;
-    border-top: 1px solid rgba(245,200,66,0.15);
-  }
-  .footer-name {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.4rem;
-    font-weight: 700;
-    color: var(--white);
-    margin-bottom: 0.5rem;
-  }
-  .footer-contacts {
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 1.5rem;
-    margin: 1.2rem 0;
-  }
-  .footer-contacts a {
-    color: var(--teal);
-    text-decoration: none;
-    font-size: 0.85rem;
-    transition: color 0.3s;
-  }
+  .fb-viksit .fb-url { color: var(--gold); }
+  .quote-section { text-align: center; padding: 5rem 2rem; position: relative; }
+  .quote-text { font-family: 'Playfair Display', serif; font-size: clamp(1.3rem, 3vw, 2rem); font-style: italic; color: var(--gold-light); max-width: 800px; margin: 0 auto 1.5rem; line-height: 1.6; }
+  .quote-attribution { font-family: 'Space Mono', monospace; font-size: 0.72rem; letter-spacing: 2px; color: var(--saffron); text-transform: uppercase; }
+  footer { background: #060E1C; padding: 3rem 2rem; text-align: center; border-top: 1px solid rgba(245,200,66,0.15); }
+  .footer-name { font-family: 'Playfair Display', serif; font-size: 1.4rem; font-weight: 700; color: var(--white); margin-bottom: 0.5rem; }
+  .footer-contacts { display: flex; justify-content: center; flex-wrap: wrap; gap: 1.5rem; margin: 1.2rem 0; }
+  .footer-contacts a { color: var(--teal); text-decoration: none; font-size: 0.85rem; transition: color 0.3s; }
   .footer-contacts a:hover { color: var(--gold); }
-  .footer-jai {
-    font-family: 'Playfair Display', serif;
-    font-size: 1rem;
-    color: var(--gold);
-    margin-top: 1.5rem;
-    letter-spacing: 1px;
-  }
-  .footer-copy {
-    color: rgba(255,255,255,0.25);
-    font-size: 0.75rem;
-    margin-top: 1rem;
-  }
-
-  /* ── ANIMATIONS ── */
-  @keyframes slideUp {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
-  @keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
-  }
-
-  /* Scroll reveal */
-  .reveal {
-    opacity: 0;
-    transform: translateY(30px);
-    transition: opacity 0.7s ease, transform 0.7s ease;
-  }
-  .reveal.visible {
-    opacity: 1;
-    transform: translateY(0);
-  }
-
-  /* ── RESPONSIVE ── */
+  .footer-jai { font-family: 'Playfair Display', serif; font-size: 1rem; color: var(--gold); margin-top: 1.5rem; letter-spacing: 1px; }
+  .footer-copy { color: rgba(255,255,255,0.25); font-size: 0.75rem; margin-top: 1rem; }
+  @keyframes slideUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+  @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+  .reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.7s ease, transform 0.7s ease; }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
   @media (max-width: 768px) {
     .stats-grid { grid-template-columns: repeat(3, 1fr); }
     .pillars-grid, .creds-grid, .platforms-grid { grid-template-columns: 1fr; }
     .nano-section { grid-template-columns: 1fr; }
     .nav-links { display: none; }
+    .featured-links { grid-template-columns: 1fr; }
   }
 </style>
 </head>
 <body>
-
-<!-- Tricolour top bar -->
-<div class="tricolour">
-  <span></span><span></span><span></span>
-</div>
-
-<!-- Navigation -->
+<div class="tricolour"><span></span><span></span><span></span></div>
 <nav>
   <div class="nav-brand">Kallol Chakrabarti</div>
   <ul class="nav-links">
@@ -826,45 +189,19 @@
     <li><a href="#contact">Contact</a></li>
   </ul>
 </nav>
-
-<!-- HERO -->
 <div class="hero">
   <div class="flag-strip"><span></span><span></span><span></span></div>
-
   <p class="hero-eyebrow">Independent Researcher & Policy Architect • Lucknow, UP, India</p>
-
   <h1 class="hero-name">Kallol Chakrabarti</h1>
   <p class="hero-title">Contributions to Atmanirbhar Bharat</p>
-
-  <p class="hero-tagline">
-    A citizen-built national knowledge infrastructure — independently conceived, developed and deployed
-    without institutional funding, government grants, or foreign collaboration.
-    Embodying intellectual sovereignty at its most authentic.
-  </p>
-
+  <p class="hero-tagline">A citizen-built national knowledge infrastructure — independently conceived, developed and deployed without institutional funding, government grants, or foreign collaboration. Embodying intellectual sovereignty at its most authentic.</p>
   <div class="stats-grid">
-    <div class="stat-card">
-      <span class="stat-number">256+</span>
-      <span class="stat-label">Zenodo DOIs</span>
-    </div>
-    <div class="stat-card">
-      <span class="stat-number">5,000+</span>
-      <span class="stat-label">Global Downloads</span>
-    </div>
-    <div class="stat-card">
-      <span class="stat-number">94.9%</span>
-      <span class="stat-label">Avg Novelty Score</span>
-    </div>
-    <div class="stat-card">
-      <span class="stat-number">190+</span>
-      <span class="stat-label">Frameworks</span>
-    </div>
-    <div class="stat-card">
-      <span class="stat-number">25</span>
-      <span class="stat-label">DeSci Verified</span>
-    </div>
+    <div class="stat-card"><span class="stat-number">256+</span><span class="stat-label">Zenodo DOIs</span></div>
+    <div class="stat-card"><span class="stat-number">5,000+</span><span class="stat-label">Global Downloads</span></div>
+    <div class="stat-card"><span class="stat-number">94.9%</span><span class="stat-label">Avg Novelty Score</span></div>
+    <div class="stat-card"><span class="stat-number">190+</span><span class="stat-label">Frameworks</span></div>
+    <div class="stat-card"><span class="stat-number">25</span><span class="stat-label">DeSci Verified</span></div>
   </div>
-
   <div class="hero-cta">
     <a href="https://zenodo.org/records/18524801" target="_blank" class="btn btn-primary">View on Zenodo</a>
     <a href="https://orcid.org/0009-0007-4971-8936" target="_blank" class="btn btn-outline">ORCID Profile</a>
@@ -876,38 +213,18 @@
         <span class="ppt-sub">PowerPoint Presentation · 10 Slides</span>
       </span>
     </a>
-    <a href="Kallol_Chakrabarti_Research_Portfolio.pptx" download class="btn btn-ppt">
-      <span class="ppt-icon">📊</span>
-      <span class="ppt-label">
-        <span class="ppt-main">DOWNLOAD PORTFOLIO</span>
-        <span class="ppt-sub">PowerPoint Presentation · 10 Slides</span>
-      </span>
-    </a>
   </div>
 </div>
-
 <div class="divider"></div>
-
-<!-- QUOTE -->
 <div class="quote-section">
-  <p class="quote-text">
-    "Atmanirbhar Bharat is not just economic self-reliance — it is intellectual sovereignty.
-    This entire research portfolio is a living demonstration of that principle."
-  </p>
+  <p class="quote-text">"Atmanirbhar Bharat is not just economic self-reliance — it is intellectual sovereignty. This entire research portfolio is a living demonstration of that principle."</p>
   <p class="quote-attribution">— Submitted to the Prime Minister's Office, March 2026</p>
 </div>
-
 <div class="divider"></div>
-
-<!-- 4 PILLARS -->
 <section id="pillars">
   <p class="section-label reveal">Viksit Bharat 2047</p>
   <h2 class="section-title reveal">4 Pillars of Contribution</h2>
-  <p class="section-subtitle reveal">
-    Each pillar directly advances the national vision of a technologically advanced,
-    culturally rooted, and citizen-empowered Bharat.
-  </p>
-
+  <p class="section-subtitle reveal">Each pillar directly advances the national vision of a technologically advanced, culturally rooted, and citizen-empowered Bharat.</p>
   <div class="pillars-grid">
     <div class="pillar-card p1 reveal">
       <div class="pillar-num">01</div>
@@ -920,7 +237,6 @@
         <li>Scalable to 6+ major national schemes immediately</li>
       </ul>
     </div>
-
     <div class="pillar-card p2 reveal">
       <div class="pillar-num">02</div>
       <div class="pillar-name">AI Governance & Civic Technology</div>
@@ -932,7 +248,6 @@
         <li>Published in SSRN — used at Harvard, Oxford & top law schools</li>
       </ul>
     </div>
-
     <div class="pillar-card p3 reveal">
       <div class="pillar-num">03</div>
       <div class="pillar-name">Rural & Bio-Integrated Development</div>
@@ -944,7 +259,6 @@
         <li>92% DeSci Labs novelty · Cited by UK Govt Metascience Unit</li>
       </ul>
     </div>
-
     <div class="pillar-card p4 reveal">
       <div class="pillar-num">04</div>
       <div class="pillar-name">Civilisational Renaissance</div>
@@ -958,14 +272,10 @@
     </div>
   </div>
 </section>
-
 <div class="divider"></div>
-
-<!-- NANO BANANA -->
 <section id="nano" style="max-width: 1100px; margin: 0 auto; padding: 6rem 2rem;">
   <p class="section-label reveal">Project Nano Banana</p>
   <h2 class="section-title reveal">From Patent Poverty to Patent Democracy</h2>
-
   <div class="nano-section reveal">
     <div class="nano-left">
       <div class="big-title">NANO<br>BANANA</div>
@@ -973,138 +283,45 @@
       <div class="nano-badge">🏆 National IP Awards 2025 — Shortlisted by CGPDTM, Govt. of India</div>
     </div>
     <div class="nano-features">
-      <div class="nano-feature">
-        <div class="nano-feature-title">✅ Zero Cost</div>
-        <div class="nano-feature-desc">Any student, farmer, or inventor establishes legally recognised Prior Art — no lawyer, no filing fee required.</div>
-      </div>
-      <div class="nano-feature">
-        <div class="nano-feature-title">🔒 Timestamped & Secure</div>
-        <div class="nano-feature-desc">Immutable digital disclosures create an unbreakable record of indigenous innovation.</div>
-      </div>
-      <div class="nano-feature">
-        <div class="nano-feature-title">🗄️ National Archive</div>
-        <div class="nano-feature-desc">A searchable DPI protecting India's intellectual borders from corporate appropriation.</div>
-      </div>
-      <div class="nano-feature">
-        <div class="nano-feature-title">🌱 Citizen Empowerment</div>
-        <div class="nano-feature-desc">Brilliant ideas from rural and non-affiliated youth will never be lost due to lack of funds again.</div>
-      </div>
+      <div class="nano-feature"><div class="nano-feature-title">✅ Zero Cost</div><div class="nano-feature-desc">Any student, farmer, or inventor establishes legally recognised Prior Art — no lawyer, no filing fee required.</div></div>
+      <div class="nano-feature"><div class="nano-feature-title">🔒 Timestamped & Secure</div><div class="nano-feature-desc">Immutable digital disclosures create an unbreakable record of indigenous innovation.</div></div>
+      <div class="nano-feature"><div class="nano-feature-title">🗄️ National Archive</div><div class="nano-feature-desc">A searchable DPI protecting India's intellectual borders from corporate appropriation.</div></div>
+      <div class="nano-feature"><div class="nano-feature-title">🌱 Citizen Empowerment</div><div class="nano-feature-desc">Brilliant ideas from rural and non-affiliated youth will never be lost due to lack of funds again.</div></div>
     </div>
   </div>
 </section>
-
 <div class="divider"></div>
-
-<!-- CREDENTIALS -->
 <section id="credentials">
   <p class="section-label reveal">Independently Verifiable</p>
   <h2 class="section-title reveal">Global Recognition Without Institutional Backing</h2>
   <p class="section-subtitle reveal">Every credential independently verifiable. No institutional affiliation. Pure citizen scholarship.</p>
-
   <div class="creds-grid">
-    <div class="cred-card c1 reveal">
-      <span class="cred-badge">Government of India</span>
-      <div class="cred-title">National IP Awards 2025</div>
-      <div class="cred-desc">Shortlisted by O/o CGPDTM (8 Dec 2025) under Patent category. Recognition accorded without a granted patent — confirming substantive originality.</div>
-    </div>
-    <div class="cred-card c2 reveal">
-      <span class="cred-badge">UN Agency</span>
-      <div class="cred-title">ILO / International Labour Review</div>
-      <div class="cred-desc">Concept acknowledged as 'Innovative' by Editor Aristea Koukiadaki (12 March 2025) with personal invitation to submit future research.</div>
-    </div>
-    <div class="cred-card c3 reveal">
-      <span class="cred-badge">G7 Policy Impact</span>
-      <div class="cred-title">UK Govt Metascience Unit</div>
-      <div class="cred-desc">Invited as recognised domain expert. Findings will inform development of policy on research evaluation by G7 governments. Co-hosted with Univ. of Sussex (SPRU).</div>
-    </div>
-    <div class="cred-card c4 reveal">
-      <span class="cred-badge">Globally Verified</span>
-      <div class="cred-title">Google-Verified World Records</div>
-      <div class="cred-desc">'Father of Original Concepts', 'World First Novel Concepts'. Sanatana Samyata confirmed World's First Ready Reckoner. Helix Library — largest independent digital library of original articles.</div>
-    </div>
-    <div class="cred-card c5 reveal">
-      <span class="cred-badge">Elite Academic Reach</span>
-      <div class="cred-title">SSRN (Elsevier)</div>
-      <div class="cred-desc">Used by Harvard, Oxford, and top global law schools. Includes 'Sāstra and Śakti: Analysis of Operation Sindoor' and governance research papers.</div>
-    </div>
-    <div class="cred-card c6 reveal">
-      <span class="cred-badge">Academic Standing</span>
-      <div class="cred-title">Peer Review Invitation</div>
-      <div class="cred-desc">Academia AI & Applications Journal (7 Oct 2025) — invited as peer reviewer and addressed as 'Dr. Chakrabarti'. IJFMR: Impact Factor 9.24.</div>
-    </div>
+    <div class="cred-card c1 reveal"><span class="cred-badge">Government of India</span><div class="cred-title">National IP Awards 2025</div><div class="cred-desc">Shortlisted by O/o CGPDTM (8 Dec 2025) under Patent category. Recognition accorded without a granted patent — confirming substantive originality.</div></div>
+    <div class="cred-card c2 reveal"><span class="cred-badge">UN Agency</span><div class="cred-title">ILO / International Labour Review</div><div class="cred-desc">Concept acknowledged as 'Innovative' by Editor Aristea Koukiadaki (12 March 2025) with personal invitation to submit future research.</div></div>
+    <div class="cred-card c3 reveal"><span class="cred-badge">G7 Policy Impact</span><div class="cred-title">UK Govt Metascience Unit</div><div class="cred-desc">Invited as recognised domain expert. Findings will inform development of policy on research evaluation by G7 governments. Co-hosted with Univ. of Sussex (SPRU).</div></div>
+    <div class="cred-card c4 reveal"><span class="cred-badge">Globally Verified</span><div class="cred-title">Google-Verified World Records</div><div class="cred-desc">'Father of Original Concepts', 'World First Novel Concepts'. Sanatana Samyata confirmed World's First Ready Reckoner. Helix Library — largest independent digital library of original articles.</div></div>
+    <div class="cred-card c5 reveal"><span class="cred-badge">Elite Academic Reach</span><div class="cred-title">SSRN (Elsevier)</div><div class="cred-desc">Used by Harvard, Oxford, and top global law schools. Includes 'Sāstra and Śakti: Analysis of Operation Sindoor' and governance research papers.</div></div>
+    <div class="cred-card c6 reveal"><span class="cred-badge">Academic Standing</span><div class="cred-title">Peer Review Invitation</div><div class="cred-desc">Academia AI & Applications Journal (7 Oct 2025) — invited as peer reviewer and addressed as 'Dr. Chakrabarti'. IJFMR: Impact Factor 9.24.</div></div>
   </div>
 </section>
-
 <div class="divider"></div>
-
-<!-- LIVE PLATFORMS -->
 <section id="platforms">
   <p class="section-label reveal">Live & Serving Citizens</p>
   <h2 class="section-title reveal">Deployed Policy Clarification Platforms</h2>
-  <p class="section-subtitle reveal">
-    Non-partisan, evidence-based, AI-powered policy clarification portals built on the founding principle:
-    <em>"Clarity Over Conversion."</em> Already live, zero cost to citizens.
-  </p>
-
+  <p class="section-subtitle reveal">Non-partisan, evidence-based, AI-powered policy clarification portals built on the founding principle: <em>"Clarity Over Conversion."</em> Already live, zero cost to citizens.</p>
   <div class="platforms-grid">
-    <a href="https://helixoriginator.github.io/pmay-policy-clarification-ai/" target="_blank" class="platform-card reveal">
-      <div class="live-dot"></div>
-      <div class="platform-info">
-        <div class="platform-name">PMAY Policy Clarifier</div>
-        <div class="platform-url">helixoriginator.github.io/pmay-policy-clarification-ai/</div>
-      </div>
-    </a>
-    <a href="https://helixoriginator.github.io/pm-kisan-policy-clarification-framework/" target="_blank" class="platform-card reveal">
-      <div class="live-dot"></div>
-      <div class="platform-info">
-        <div class="platform-name">PM-KISAN Framework</div>
-        <div class="platform-url">helixoriginator.github.io/pm-kisan-policy-clarification-framework/</div>
-      </div>
-    </a>
-    <a href="https://helixoriginator.github.io/Viksit-Bharat-2047-Governance-Architecture/" target="_blank" class="platform-card reveal">
-      <div class="live-dot"></div>
-      <div class="platform-info">
-        <div class="platform-name">Viksit Bharat 2047 Platform</div>
-        <div class="platform-url">helixoriginator.github.io/Viksit-Bharat-2047-Governance-Architecture/</div>
-      </div>
-    </a>
-    <a href="https://helixoriginator.github.io/nano-banana/" target="_blank" class="platform-card reveal">
-      <div class="live-dot"></div>
-      <div class="platform-info">
-        <div class="platform-name">Nano Banana Framework</div>
-        <div class="platform-url">helixoriginator.github.io/nano-banana/</div>
-      </div>
-    </a>
-    <a href="https://helixoriginator.github.io/Kallol-World-Record-Achievements/" target="_blank" class="platform-card reveal">
-      <div class="live-dot"></div>
-      <div class="platform-info">
-        <div class="platform-name">World Record Achievements</div>
-        <div class="platform-url">helixoriginator.github.io/Kallol-World-Record-Achievements/</div>
-      </div>
-    </a>
-    <a href="https://zenodo.org/records/18524801" target="_blank" class="platform-card reveal">
-      <div class="live-dot"></div>
-      <div class="platform-info">
-        <div class="platform-name">Zenodo Research Archive</div>
-        <div class="platform-url">zenodo.org/records/18524801</div>
-      </div>
-    </a>
-    <a href="https://helixoriginator.github.io/invisible-middleman-jam-trinity-digital-welfare/" target="_blank" class="platform-card reveal">
-      <div class="live-dot"></div>
-      <div class="platform-info">
-        <div class="platform-name">Invisible Middleman — JAM Trinity & Digital Welfare</div>
-        <div class="platform-url">helixoriginator.github.io/invisible-middleman-jam-trinity-digital-welfare/</div>
-      </div>
-    </a>
+    <a href="https://helixoriginator.github.io/pmay-policy-clarification-ai/" target="_blank" class="platform-card reveal"><div class="live-dot"></div><div class="platform-info"><div class="platform-name">PMAY Policy Clarifier</div><div class="platform-url">helixoriginator.github.io/pmay-policy-clarification-ai/</div></div></a>
+    <a href="https://helixoriginator.github.io/pm-kisan-policy-clarification-framework/" target="_blank" class="platform-card reveal"><div class="live-dot"></div><div class="platform-info"><div class="platform-name">PM-KISAN Framework</div><div class="platform-url">helixoriginator.github.io/pm-kisan-policy-clarification-framework/</div></div></a>
+    <a href="https://helixoriginator.github.io/Viksit-Bharat-2047-Governance-Architecture/" target="_blank" class="platform-card reveal"><div class="live-dot"></div><div class="platform-info"><div class="platform-name">Viksit Bharat 2047 Platform</div><div class="platform-url">helixoriginator.github.io/Viksit-Bharat-2047-Governance-Architecture/</div></div></a>
+    <a href="https://helixoriginator.github.io/nano-banana/" target="_blank" class="platform-card reveal"><div class="live-dot"></div><div class="platform-info"><div class="platform-name">Nano Banana Framework</div><div class="platform-url">helixoriginator.github.io/nano-banana/</div></div></a>
+    <a href="https://helixoriginator.github.io/Kallol-World-Record-Achievements/" target="_blank" class="platform-card reveal"><div class="live-dot"></div><div class="platform-info"><div class="platform-name">World Record Achievements</div><div class="platform-url">helixoriginator.github.io/Kallol-World-Record-Achievements/</div></div></a>
+    <a href="https://zenodo.org/records/18524801" target="_blank" class="platform-card reveal"><div class="live-dot"></div><div class="platform-info"><div class="platform-name">Zenodo Research Archive</div><div class="platform-url">zenodo.org/records/18524801</div></div></a>
+    <a href="https://helixoriginator.github.io/invisible-middleman-jam-trinity-digital-welfare/" target="_blank" class="platform-card reveal"><div class="live-dot"></div><div class="platform-info"><div class="platform-name">Invisible Middleman — JAM Trinity & Digital Welfare</div><div class="platform-url">helixoriginator.github.io/invisible-middleman-jam-trinity-digital-welfare/</div></div></a>
   </div>
 </section>
-
 <div class="divider"></div>
-
-<!-- FEATURED LINKS BANNER -->
 <div class="featured-links">
-  <a href="https://helixoriginator.github.io/invisible-middleman-jam-trinity-digital-welfare/"
-     target="_blank" class="featured-btn fb-welfare reveal">
+  <a href="https://helixoriginator.github.io/invisible-middleman-jam-trinity-digital-welfare/" target="_blank" class="featured-btn fb-welfare reveal">
     <div class="fb-icon-wrap">🔗</div>
     <div class="fb-text">
       <div class="fb-label">Research Platform · Digital Welfare</div>
@@ -1113,9 +330,7 @@
       <div class="fb-url">helixoriginator.github.io/invisible-middleman-jam-trinity-digital-welfare/</div>
     </div>
   </a>
-
-  <a href="https://helixoriginator.github.io/Viksit-Bharat-2047-Governance-Architecture/"
-     target="_blank" class="featured-btn fb-viksit reveal">
+  <a href="https://helixoriginator.github.io/Viksit-Bharat-2047-Governance-Architecture/" target="_blank" class="featured-btn fb-viksit reveal">
     <div class="fb-icon-wrap">🇮🇳</div>
     <div class="fb-text">
       <div class="fb-label">Governance Architecture · Viksit Bharat 2047</div>
@@ -1125,24 +340,13 @@
     </div>
   </a>
 </div>
-
-<!-- FINAL QUOTE -->
 <div class="quote-section">
-  <p class="quote-text">
-    "This work represents my earnest, independent contribution toward realising the vision
-    of a technologically advanced, culturally rooted, and citizen-empowered Bharat —
-    Atmanirbhar in its intellect, and Viksit in its destiny."
-  </p>
+  <p class="quote-text">"This work represents my earnest, independent contribution toward realising the vision of a technologically advanced, culturally rooted, and citizen-empowered Bharat — Atmanirbhar in its intellect, and Viksit in its destiny."</p>
   <p class="quote-attribution">— Kallol Chakrabarti</p>
 </div>
-
-<!-- FOOTER -->
 <footer id="contact">
   <div class="footer-name">Kallol Chakrabarti</div>
-  <p style="color: var(--light-gray); font-size: 0.85rem; margin-top: 0.3rem;">
-    Independent Researcher & Policy Architect · Lucknow, Uttar Pradesh, India
-  </p>
-
+  <p style="color: var(--light-gray); font-size: 0.85rem; margin-top: 0.3rem;">Independent Researcher & Policy Architect · Lucknow, Uttar Pradesh, India</p>
   <div class="footer-contacts">
     <a href="mailto:kallolchitralimagicpen@gmail.com">📧 kallolchitralimagicpen@gmail.com</a>
     <a href="tel:8881555255">📱 8881555255</a>
@@ -1150,13 +354,10 @@
     <a href="https://orcid.org/0009-0007-4971-8936" target="_blank">🆔 ORCID: 0009-0007-4971-8936</a>
     <a href="https://zenodo.org/records/18524801" target="_blank">🔬 Zenodo Profile</a>
   </div>
-
   <div class="footer-jai">🇮🇳 Jai Hind · Jai Bharat · Viksit Bharat 2047 · Atmanirbhar Bharat 🇮🇳</div>
   <p class="footer-copy">© 2026 Kallol Chakrabarti. All research independently produced. Zero institutional funding.</p>
 </footer>
-
 <script>
-  // Scroll reveal
   const reveals = document.querySelectorAll('.reveal');
   const observer = new IntersectionObserver((entries) => {
     entries.forEach((entry, i) => {
@@ -1165,7 +366,6 @@
       }
     });
   }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
-
   reveals.forEach(el => observer.observe(el));
 </script>
 </body>
